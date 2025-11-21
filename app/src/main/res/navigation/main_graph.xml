@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/splashFramgment">
+
+    <fragment
+        android:id="@+id/splashFramgment"
+        android:name="com.carlos.task.ui.SplashFramgment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFramgment_to_autentication"
+            app:destination="@id/autentication"
+            app:popUpTo="@id/splashFramgment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <navigation android:id="@+id/autentication"
+        app:startDestination="@id/loginFragment">
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.carlos.task.ui.auth.LoginFragment"
+            android:label="fragment_login"
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/action_loginFragment_to_recoverAccountFragment"
+                app:destination="@id/recoverAccountFragment" />
+            <action
+                android:id="@+id/action_loginFragment_to_registerFragment"
+                app:destination="@id/registerFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/registerFragment"
+            android:name="com.carlos.task.ui.auth.RegisterFragment"
+            android:label="fragment_register"
+            tools:layout="@layout/fragment_register" />
+        <fragment
+            android:id="@+id/recoverAccountFragment"
+            android:name="com.carlos.task.ui.auth.RecoverAccountFragment"
+            android:label="fragment_recover_account"
+            tools:layout="@layout/fragment_recover_account" />
+        <action
+            android:id="@+id/action_global_homeFragment"
+            app:destination="@id/homeFragment" />
+    </navigation>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.carlos.task.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_fromTaskFragment"
+            app:destination="@id/fromTaskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_fromTaskFragment2"
+            app:destination="@id/fromTaskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_autentication2"
+            app:destination="@id/autentication" />
+    </fragment>
+    <fragment
+        android:id="@+id/fromTaskFragment"
+        android:name="com.carlos.task.ui.FormTaskFragment"
+        android:label="fragment_from_task"
+        tools:layout="@layout/fragment_from_task" />
+</navigation>
