@@ -66,15 +66,9 @@ class RegisterFragment : Fragment() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         binding.progressBar.isVisible = false
-                        // Navegar para o HomeFragment
                         findNavController().navigate(R.id.action_global_homeFragment)
                     } else {
                         binding.progressBar.isVisible = false
-                        Toast.makeText(
-                            requireContext(),
-                            task.exception?.message ?: getString(R.string.error_generic),
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
                 }
         } catch (e: Exception) {
