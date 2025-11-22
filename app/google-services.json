@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "426879616304",
+    "project_id": "taskapp-57a1a",
+    "storage_bucket": "taskapp-57a1a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426879616304:android:a280aea379c4c0087c34f5",
+        "android_client_info": {
+          "package_name": "com.carlos.task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN01EKldkKKrDj602KbQ2aSbz1VlxPoRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

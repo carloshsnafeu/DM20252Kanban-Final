@@ -4,17 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.carlos.task.R
 import com.carlos.task.databinding.FragmentRegisterBinding
 import com.carlos.task.util.initToolbar
 import com.carlos.task.util.showBottomSheet
+import com.google.firebase.auth.FirebaseAuth
 
 class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +32,9 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbar(binding.toolbar)
+
+        auth = FirebaseAuth.getInstance()
+
         initListeners()
     }
 
@@ -48,7 +56,35 @@ class RegisterFragment : Fragment() {
             return
         }
 
-        findNavController().navigate(R.id.action_global_homeFragment)
+        binding.progressBar.isVisible = true
+        registerUser(email, senha)
+    }
+
+    private fun registerUser(email: String, password: String) {
+        try {
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        binding.progressBar.isVisible = false
+                        // Navegar para o HomeFragment
+                        findNavController().navigate(R.id.action_global_homeFragment)
+                    } else {
+                        binding.progressBar.isVisible = false
+                        Toast.makeText(
+                            requireContext(),
+                            task.exception?.message ?: getString(R.string.error_generic),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+        } catch (e: Exception) {
+            binding.progressBar.isVisible = false
+            Toast.makeText(
+                requireContext(),
+                e.message.toString(),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     override fun onDestroyView() {
