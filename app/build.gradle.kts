@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.carlos.task"
-    compileSdk = 36   // <- precisa ser 36 por causa do core-ktx 1.17.0 e activity 1.10.1
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.carlos.task"
@@ -41,11 +41,6 @@ android {
     viewBinding {
         enable = true
     }
-
-    // Se não estiver usando DataBinding (layouts com <layout>), não precisa habilitar:
-    // buildFeatures {
-    //     dataBinding = true
-    // }
 }
 
 dependencies {
@@ -58,17 +53,17 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-    // ---------------------------
-    //      FIREBASE (BOM)
-    // ---------------------------
+    // --------- FIREBASE ---------
 
-    // BOM do Firebase (controla as versões internamente)
+    // BOM controla TODAS as versões dos módulos do Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
 
-    // Auth com extensões KTX (sem versão explícita – herda do BOM)
+    // Módulos que você realmente usa (sem versão explícita)
     implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-database-ktx")
 
-    // ---------------------------
+    // ❌ REMOVIDO: isso aqui forçava outra definição via Version Catalog
+    // implementation(libs.google.firebase.database.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

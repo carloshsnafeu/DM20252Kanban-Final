@@ -12,7 +12,7 @@ import com.carlos.task.R
 import com.carlos.task.data.model.Status
 import com.carlos.task.data.model.Task
 import com.carlos.task.databinding.FragmentDoingBinding
-import com.fabio.task.ui.adapter.TaskAdapter
+import com.carlos.task.ui.adapter.TaskAdapter
 
 class DoingFragment : Fragment() {
 
